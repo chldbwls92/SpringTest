@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +26,7 @@ public class Test02Controller {
 		movie.put("title", "기생충");
 		movieLists.add(movie);
 		
+		// 다 다뤘기 때문에 재사용 가능(새로운 맵에 대한 기능 수행)
 		movie = new HashMap<>();
 		movie.put("rate", 0);
 		movie.put("director", "로베르토 베니니");
@@ -45,11 +48,34 @@ public class Test02Controller {
 		movie.put("title", "헝거게임");
 		movieLists.add(movie);
 		
-		// 뭔가... 잘못됐어 .. 단단히 ....
 		return movieLists;
 		
 	}
 	
 	
+	@RequestMapping("/2")
+	public List<text> textList() {
+		List<text> textList = new ArrayList<>();
+		text Text = new text("안녕하세요 가입인사 드립니다.", "hagulu", "안녕하세요. 가입했어요. 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
+		textList.add(Text);
+		
+		textList.add(new text("헐 대박", "bada", "오늘 목요일이었어.. 금요일인줄"));
+		textList.add(new text("오늘 데이트 한 이야기 해드릴게요", "dulumary", "...."));
+		return textList;
+	}
+	
+	
+	@RequestMapping("/3")
+	public ResponseEntity<text> textError() {
+		text Text = new text("안녕하세요 가입인사 드립니다.", "hagulu", "안녕하세요. 가입했어요. 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
+		ResponseEntity<text> entity = new ResponseEntity<>(Text,HttpStatus.INTERNAL_SERVER_ERROR);
+		return entity;
+	}
+	
+	// Gradle(그래들)
+	// 빌드 도구
+	// 각종 라이브러리를 간단하게 포함시켜줌
+	// => 빌드 과정 손쉽게 셋팅 가능
+	// 유사한 것으로 Maven(메이븐)
 
 }
