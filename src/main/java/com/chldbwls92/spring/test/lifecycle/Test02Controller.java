@@ -71,11 +71,6 @@ public class Test02Controller {
 		ResponseEntity<text> entity = new ResponseEntity<>(Text,HttpStatus.INTERNAL_SERVER_ERROR);
 		return entity;
 	}
-	
-	// Gradle(그래들)
-	// 빌드 도구
-	// 각종 라이브러리를 간단하게 포함시켜줌
-	// => 빌드 과정 손쉽게 셋팅 가능
-	// 유사한 것으로 Maven(메이븐)
+
 
 }
