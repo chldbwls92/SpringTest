@@ -39,5 +39,43 @@ public class EstateService {
 		return estateList;
 	}
 	
+	// 객체 형태로 저장해서 insert
+	public int addEstateByObject(Estate estate) {
+		int count = estateRepository.insertEstateByObject(estate);
+		return count;
+	}
+	
+	// 따로 하나하나 전달해주는
+	public int addEstate(
+			int realtorId
+			, String address
+			, int area
+			, String type
+			, int price
+			, int rentPrice) {
+		
+		int count = estateRepository.insertEstate(realtorId, address, area, type, price, rentPrice);
+		return count;
+	}
+	
+	
+	public int updateEstate(
+			int id
+			, String type
+			, int price) {
+		
+		// 업데이트 쿼리를 수행시켜야됨
+		int count = estateRepository.updateEstate(id, type, price);
+		
+		return count;
+	}
 
+	
+	public int deleteEstate(int id) {
+		// delete 쿼리 실행
+		int count = estateRepository.deleteEstate(id);
+		
+		return count;
+	}
+	
 }

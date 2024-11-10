@@ -27,4 +27,24 @@ public interface EstateRepository {
 			@Param("area") int area
 			, @Param("price") int price);
 	
+	
+	public int insertEstateByObject(Estate estate);
+	// insert는 type은 int로 고정
+	public int insertEstate(
+			@Param("realtorId") int realtorId
+			, @Param("address") String address
+			, @Param("area") int area
+			, @Param("type") String type
+			, @Param("price") int price
+			, @Param("rentPrice") int rentPrice);
+	
+	
+	public int updateEstate(
+			@Param("id") int id
+			, @Param("type") String type
+			, @Param("price") int price);
+	
+	
+	// 특정 아이디 내용 없애는
+	public int deleteEstate(@Param("id") int id);
 }
