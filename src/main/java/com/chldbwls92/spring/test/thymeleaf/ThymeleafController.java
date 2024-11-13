@@ -148,15 +148,7 @@ public class ThymeleafController {
 		
 		return "thymeleaf/test03";
 	}
-	
-	
-	@GetMapping("/test04")
-	public String test04() {
-		
-		return "thymeleaf/test04";
-	}
-	
-	
+
 	
 	
 }
