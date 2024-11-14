@@ -22,5 +22,13 @@ public class WeatherController {
 		
 		return "thymeleaf/test04";
 	}
+	
+	
+	@GetMapping("input")
+	public String input() {
+		
+		return "thymeleaf/weatherInput";
+	}
+	
 
 }

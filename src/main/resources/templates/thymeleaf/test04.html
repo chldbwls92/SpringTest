@@ -44,10 +44,13 @@
 						<tr th:each="weather:${weatherList}">
 							<td th:text="${#temporals.format(weather.date,'yyyy년 M월 dd일')}">2015년 7월 1일</td>
 							<td th:if="${#strings.startsWith(weather.weather, '구름조금')}"><img src="http://marondal.com/material/images/dulumary/web/jstl/partlyCloudy.jpg"></td>
-							<td>21.9°C</td>
-							<td>83.5mm</td>
-							<td>보통</td>
-							<td>2.9km/h</td>
+							<td th:if="${#strings.startsWith(weather.weather, '맑음')}"><img src="http://marondal.com/material/images/dulumary/web/jstl/sunny.jpg"></td>
+							<td th:if="${#strings.startsWith(weather.weather, '흐림')}"><img src="http://marondal.com/material/images/dulumary/web/jstl/cloudy.jpg"></td>
+							<td th:if="${#strings.startsWith(weather.weather, '비')}"><img src="http://marondal.com/material/images/dulumary/web/jstl/rainy.jpg"></td>
+							<td th:text="|${weather.temperatures}°C|">21.9°C</td>
+							<td th:text="|${weather.precipitation}mm|">83.5mm</td>
+							<td th:text="${weather.microDust}">보통</td>
+							<td th:text="|${weather.windSpeed}km/h|">2.9km/h</td>
 						</tr>
 					</tbody>
 				</table>
