@@ -7,10 +7,10 @@
 }
 
 article {
-	height:800px;
 	background-color:#6494eb;
 }
 
-nav {
-	
+
+li {
+	list-style: none;
 }

@@ -3,9 +3,12 @@ package com.chldbwls92.spring.test.thymeleaf;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Weather {
 	// weather 도메인 class
 	private int id;
+	@DateTimeFormat(pattern="yyyy년 M월 ss일")
 	private LocalDate date;
 	private String weather;
 	private double temperatures;

@@ -1,5 +1,6 @@
 package com.chldbwls92.spring.test.thymeleaf;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,20 @@ public class WeatherService {
 		return weather;
 	}
 	
+	
+	// create 정보 저장할 곳
+	public int addWeather(
+			LocalDate date
+			, String weather
+			, double temperatures
+			, double precipitation
+			, String microDust
+			, double windSpeed) {
+		
+		int count = weatherRepository.insertWeather(date, weather, temperatures, precipitation, microDust, windSpeed);
+		
+		return count ;
+		
+	}
 
 }
