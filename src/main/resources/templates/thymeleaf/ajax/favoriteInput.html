@@ -7,16 +7,73 @@
 </head>
 <body>
 
-	<div>
+	<div class="ml-3">
 		<h2>즐겨 찾기 추가하기</h2>
 		<label>제목</label><br>
-		<input type="text" class="w-50" id="title"><br>
+		<input type="text" class="w-50" id="name"><br>
 		<label>주소</label><br>
-		<input type="text" class="w-50" id="address"><br>
-		<button type="button" class="btn btn-success w-50 mt-3">추가</button>
+		<input type="text" class="w-50" id="url"><br>
+		<button type="button" class="btn btn-success w-50 mt-3" id="addBtn">추가</button>
 	</div>
 
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function() {
+		
+		// 버튼이 클릭됐을 때
+		$("#addBtn").on("click", function() {
+			// 입력된 값 가져오기
+			let name = $("#name").val();
+			let url = $("#url").val();
+			
+			// 유효성 검사
+			if(name == "") {
+				alert("제목을 입력하세요");
+				return;
+			}
+			
+			if(url == "") {
+				alert("url을 입력하세요");
+				return;
+			}
+			
+			if(url != string.startsWith("http://") || url != string.startsWith("https://")) {
+				alert("url울 다시 확인해주세요");
+				return;
+			}
+			
+			console.log(name, url);
+			
+			// 위의 조건이 모두 아닐 경우
+			// 입력된 값으로 API 요청
+			$.ajax({
+				type:"get"
+				, url:"/ajax/favorite/create"
+				, data:{"name":name, "url":url}
+				, success:function(response) {
+					// 성공할 경우
+					if(response == "success") {
+						alert("저장 성공~!");
+					} else {
+						alrest("저장 실패");
+					}
+				}
+				, error:function() {
+					alret("저장 에러");
+				}
+				
+			});
+			
+			
+		});
+		
+		
+	})
+
+
+
+</script>
 
 
 
