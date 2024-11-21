@@ -59,8 +59,8 @@
 			// 저장을 해주고, 그 결과를 성공 실패 여부에 따라 json형태로 보내준다.
 			// server가 아니라 cliant에서 동작하는 것
 			$.ajax({
-				type:"post"
-				, url:"/ajax/favorite/create"
+				type:"get"
+				, url:"/favorite/create"
 				, data:{"name":name, "url":url}
 				, success:function(response) {
 					// 성공할 경우
