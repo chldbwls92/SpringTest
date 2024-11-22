@@ -1,5 +1,8 @@
 package com.chldbwls92.spring.test.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +26,18 @@ public class CompanyController {
 	//create
 	@ResponseBody
 	@GetMapping("/create")
-	public Company createCompany() {
-		Company company = companyService.addCompany("넥손", "컨텐츠 게임", "대기업", 3585);
+	public List<Company> createCompany() {
 		
-		company = companyService.addCompany("버블팡", "여신 금융업", "대기업", 6834);
-		return company;
+		List<Company> companyList = new ArrayList<>();
+		
+		Company company1 = companyService.addCompany("넥손", "컨텐츠 게임", "대기업", 3585);
+		
+		Company company2 = companyService.addCompany("버블팡", "여신 금융업", "대기업", 6834);
+		
+		companyList.add(company1);
+		companyList.add(company2);
+		
+		return companyList;
 	}
 	
 	
@@ -35,6 +45,7 @@ public class CompanyController {
 	@ResponseBody
 	@GetMapping("/update")
 	public Company updateCompany() {
+
 		// id로 업데이트(id=15)
 		Company company = companyService.updateCompany(15, "중소기업", 34);
 		

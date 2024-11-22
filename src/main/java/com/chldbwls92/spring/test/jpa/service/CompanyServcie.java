@@ -38,16 +38,23 @@ public class CompanyServcie {
 	public Company updateCompany(int id, String scale, int headcount) {
 		
 		Optional<Company> optionalCompany = companyRepository.findById(id);
-		Company company = optionalCompany.orElse(null);
 		
-		company = company.toBuilder()
-				.scale(scale)
-				.headcount(headcount)
-				.build();
+		if(optionalCompany.isPresent()) {
+			// optional 객체에 데이터 객체가 null이 아닌경우
+			Company company = optionalCompany.get();
+			
+			company = company.toBuilder()
+					.scale(scale)
+					.headcount(headcount)
+					.build();
+			
+			Company result = companyRepository.save(company);
+			
+			return result;
+		}
 		
-		Company result = companyRepository.save(company);
+		return null;
 		
-		return result;
 	}
 	
 	
@@ -59,9 +66,14 @@ public class CompanyServcie {
 		
 		// null이 올 수 있으니까 optional
 		Optional<Company> optionalCompany = companyRepository.findById(id);
-		Company company = optionalCompany.orElse(null);
+//		if(optionalCompany.isPresent()) {
+//			companyRepository.delete(optionalCompany.get());
+//		}
 		
-		companyRepository.delete(company);
+		// 람다식 표현!!!!!!!!!!!!!!!!!!!!!!
+		// null 이 아닐 때 수행될 기능 등록
+		optionalCompany.ifPresent(company -> companyRepository.delete(company));
+		
 	}
 	
 	
