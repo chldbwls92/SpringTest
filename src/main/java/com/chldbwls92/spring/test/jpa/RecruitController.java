@@ -1,5 +1,6 @@
 package com.chldbwls92.spring.test.jpa;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,24 +48,24 @@ public class RecruitController {
 	@ResponseBody
 	@GetMapping("/manycondition")
 	public List<Recruit> problem() {
-		List<Recruit> recruitList = null;
+//		List<Recruit> recruitList = null;
+//		return recruitList;
 		
 		// 3번 문제
-//		recruitList = recruitRepository.findByPositionAndType("웹 back-end 개발자", "정규직");
+//		return recruitRepository.findByPositionAndType("웹 back-end 개발자", "정규직");
 		
 		// 4번 문제
-//		recruitList = recruitRepository.findByTypeOrSalaryAfter("정규직", 9000);
+//		return recruitRepository.findByTypeOrSalaryAfter("정규직", 9000);
 				
 		
 		//5번 문제
-//		recruitList = recruitRepository.findTop3ByTypeOrderBySalaryDesc("계약직");
+//		return recruitRepository.findTop3ByTypeOrderBySalaryDesc("계약직");
 		
 		// 6번 문제
-//		recruitList = recruitRepository. findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
+//		return recruitRepository. findByRegionAndSalaryBetween("성남시 분당구", 7000, 8500);
 		
 		// 7번 문제
-		recruitList = recruitRepository.selectByRegion("2026-04-10", 8100, "정규직");
-		return recruitList;
+		return recruitRepository.selectByNativeQuery(LocalDate.of(2026, 4, 10), 8100, "정규직");
 	}
 	
 

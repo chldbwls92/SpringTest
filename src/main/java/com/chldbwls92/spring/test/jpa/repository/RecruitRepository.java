@@ -1,5 +1,6 @@
 package com.chldbwls92.spring.test.jpa.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +23,9 @@ public interface RecruitRepository extends JpaRepository<Recruit, Integer>{
 	//4
 	// type이 정규직 "이거나" salary가 9000이상
 	// WHERE type = "정규직" OR salary >= 9000
+	// GreaterThan LessThan...
+	//  + Equal
+	// => GreaterThanEqual
 	public List<Recruit> findByTypeOrSalaryAfter(String type, int start);
 	
 	//5
@@ -37,8 +41,9 @@ public interface RecruitRepository extends JpaRepository<Recruit, Integer>{
 	// deadline이 2026-04-10 이후 AND salary가 8100이상 AND Type="정규직" ORDER BY Salary DESC;
 	// native query
 	// 특정 컬럼만 가져오거나, 여러 테이블 조인할 때 사용
-	@Query(value="SELECT * FROM `recruit` WHERE `region` = :region AND `salary` = :salary ORDER BY `salary` DESC" , nativeQuery=true)
-	public List<Request> selectByRegion(@Param("region")String region
-										, @Param("salary") int salary);
+	@Query(value="SELECT * FROM `recruit` WHERE `deadline` > :deadline AND `salary` >= :salary AND `type` = :type ORDER BY `salary` DESC" , nativeQuery=true)
+	public List<Recruit> selectByNativeQuery(@Param("deadline")LocalDate deadline
+										, @Param("salary") int salary
+										, @Param("type") String type);
 	
 }
